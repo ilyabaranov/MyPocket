@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="material_light_primary_text">#DE000000</color>
+    <color name="material_light_hint_text">#61000000</color>
+    <color name="material_light_active_icon">#8A000000</color>
+    <color name="material_ripple_light">#1F000000</color>
+    <color name="divider_color">#1F000000</color>
+    <color name="active_icon_color">#8A000000</color>
+    <color name="cards_and_dialogs_color">@android:color/white</color>
+    <color name="quantum_grey_600">#757575</color>
+
+
+    <color name="category_transport">#2D36E1</color>
+    <color name="category_food">#FFC107</color>
+    <color name="category_attractions">#673AB7</color>
+    <color name="category_rent">#ED891D</color>
+    <color name="category_sport">#4CAF50</color>
+    <color name="category_hobby">#A34343</color>
+    <color name="category_hygiene">#BF41ECA2</color>
+    <color name="category_pet">#971D1D</color>
+    <color name="category_relationship">#E33F94</color>
+
+</resources>
