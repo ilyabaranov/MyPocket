@@ -9,9 +9,7 @@ data class Category(
     @ColumnInfo(name = "category_name")
     val name:String,
     @ColumnInfo(name = "category_moneySum")
-    var moneySum:Float,
-    @ColumnInfo(name = "category_color")
-    val color : Int
+    var moneySum:Float
 )
 {
     @PrimaryKey(autoGenerate = true)

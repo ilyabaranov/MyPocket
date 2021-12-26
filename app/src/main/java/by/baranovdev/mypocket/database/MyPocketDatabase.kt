@@ -8,7 +8,7 @@ import by.baranovdev.mypocket.database.dao.CategoryDao
 import by.baranovdev.mypocket.database.dao.NoteDao
 import by.baranovdev.mypocket.database.entity.Category
 import by.baranovdev.mypocket.database.entity.Note
-@Database(entities = [Note::class,Category::class], version = 5)
+@Database(entities = [Note::class,Category::class], version = 7)
 abstract class MyPocketDatabase : RoomDatabase() {
 
     abstract fun noteDao(): NoteDao

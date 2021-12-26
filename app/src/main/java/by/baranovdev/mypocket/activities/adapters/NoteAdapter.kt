@@ -20,14 +20,15 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class NoteAdapter(
-    private val list: ArrayList<Note>,
+    private val list:ArrayList<Note>,
     private val category: List<Category>,
     private val listener: OnNoteCLickListener
 ) :
-    RecyclerView.Adapter<NoteAdapter.NoteViewHolder>(),
-    Filterable {
+    RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
-    val fullList = list
+    companion object{
+        const val NEW_NOTE_CARD = "newnotecard&kdhk6djsfk"
+    }
 
     private lateinit var binding: NoteItemBinding
 
@@ -39,10 +40,20 @@ class NoteAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind() {
-            binding.title.text = listNote[adapterPosition].description
-            binding.moneySpent.text = listNote[adapterPosition].money.toString()
-            binding.category.text = listNote[adapterPosition].category
-            binding.categoryMark.setImageResource(findIconResource(listNote[adapterPosition].category))
+            if(listNote[adapterPosition].description == NEW_NOTE_CARD && listNote[adapterPosition].category == NEW_NOTE_CARD){
+                bindNewCard()
+            }
+            else{
+                binding.title.text = listNote[adapterPosition].description
+                binding.moneySpent.text = listNote[adapterPosition].money.toString()
+                binding.category.text = listNote[adapterPosition].category
+                binding.categoryMark.setImageResource(findIconResource(listNote[adapterPosition].category))
+            }
+        }
+
+        private fun bindNewCard(){
+            binding.layoutNewCard.visibility = View.VISIBLE
+            binding.layoutCard.visibility = View.GONE
         }
 
         init {
@@ -69,35 +80,6 @@ class NoteAdapter(
         return list.size
     }
 
-    override fun getFilter(): Filter {
-        return filter
-    }
-
-    private val filter: Filter = object : Filter() {
-        override fun performFiltering(constraint: CharSequence): FilterResults {
-            val filteredList: ArrayList<Note> = ArrayList()
-            if (constraint.isEmpty()) {
-                filteredList.addAll(fullList)
-            } else {
-                val filterPattern =
-                    constraint.toString().lowercase(Locale.getDefault()).trim { it <= ' ' }
-                for (note in fullList) {
-                    if (note.description.lowercase(Locale.getDefault()).contains(filterPattern)) {
-                        filteredList.add(note)
-                    }
-                }
-            }
-            val results = FilterResults()
-            results.values = filteredList
-            return results
-        }
-
-        override fun publishResults(constraint: CharSequence, results: FilterResults) {
-            list.clear()
-            list.addAll(results.values as java.util.ArrayList<Note>)
-            notifyDataSetChanged()
-        }
-    }
 
     interface OnNoteCLickListener {
         fun onNoteCLick(note: Note?)
@@ -106,16 +88,25 @@ class NoteAdapter(
 
 fun findIconResource(category :String):Int{
     return when(category.trim()){
-        "Транспорт" -> R.drawable.ic_baseline_directions_car_24
-        "Продукты" -> R.drawable.ic_baseline_fastfood_24
+        "Транспорт" -> R.drawable.ic_transport_24
+        "Продукты" -> R.drawable.ic_products_24
         "Развлечения" -> R.drawable.ic_baseline_sports_esports_24
-        "Жильё" -> R.drawable.ic_baseline_house_24
-        "Спорт" -> R.drawable.ic_baseline_fitness_center_24
+        "Жильё" -> R.drawable.ic_rent_24
+        "Спорт" -> R.drawable.ic_sport_24
         "Хобби" -> R.drawable.ic_baseline_emoji_emotions_24
-        "Гигиена" -> R.drawable.ic_baseline_bathtub_24
-        "Питомцы" -> R.drawable.ic_baseline_bedroom_baby_24
-        "Отношения" -> R.drawable.ic_baseline_favorite_24
+        "Гигиена" -> R.drawable.ic_hygiene_24
+        "Питомцы" -> R.drawable.ic_pet_24
+        "Подарки" -> R.drawable.ic_gift_24
+        "Кафе" -> R.drawable.ic_category_food
+        "Такси" -> R.drawable.ic_taxi_24
+        "Счета" -> R.drawable.ic_is_bills_24
+        "Связь" -> R.drawable.ic_telecom_24
+        "Одежда" -> R.drawable.ic_clothes_24
+        "Здоровье" -> R.drawable.ic_health_24
+        "Авто" -> R.drawable.ic_auto_24
         else -> 0
     }
+
+
 }
 

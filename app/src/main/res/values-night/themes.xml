@@ -14,12 +14,10 @@
         <!-- Customize your theme here. -->
     </style>
     <style name="SearchViewTheme" parent="Widget.AppCompat.SearchView.ActionBar">
-        <item name="layout">@layout/toolbar_search_view</item>
         <item name="commitIcon">@drawable/ic_baseline_search_24</item>
         <item name="colorControlNormal">@color/cardview_light_background</item>
         <item name="colorControlHighlight">@color/design_default_color_on_primary</item>
         <item name="autoCompleteTextViewStyle">@style/AutoCompleteTextViewStyle</item>
-        <item name="suggestionRowLayout">@layout/search_view_suggestion_row</item>
         <item name="android:maxWidth">9999dp</item>
     </style>
 

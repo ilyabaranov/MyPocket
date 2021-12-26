@@ -11,6 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPocket">
         <activity
+            android:name=".activities.AuthActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.login.AuthActivity"
+            android:exported="false"
+            android:label="@string/title_activity_auth" />
+        <activity
             android:name=".activities.NoteActivity"
             android:exported="false" />
         <activity

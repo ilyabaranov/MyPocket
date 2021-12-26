@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import by.baranovdev.mypocket.R
+import by.baranovdev.mypocket.activities.fragments.main.HomeFragment
 import by.baranovdev.mypocket.activities.viewmodels.MainViewModel
 import by.baranovdev.mypocket.activities.viewmodels.NoteViewModel
 import by.baranovdev.mypocket.activities.viewmodels.NoteViewModelFactory
@@ -37,10 +38,10 @@ class NoteActivity : AppCompatActivity() {
         binding = ActivityNoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        noteViewModel.getNote(intent.getIntExtra(MainActivity.EXTRA_SELECTED_NOTE_ID, 0))
+        noteViewModel.getNote(intent.getIntExtra(HomeFragment.EXTRA_SELECTED_NOTE_ID, 0))
 
         binding.buttonDelete.setOnClickListener {
-            noteViewModel.deleteNote(intent.getIntExtra(MainActivity.EXTRA_SELECTED_NOTE_ID, 0))
+            noteViewModel.deleteNote(intent.getIntExtra(HomeFragment.EXTRA_SELECTED_NOTE_ID, 0))
         }
 
         noteViewModel.currentNoteLiveData.observe(this) {
@@ -61,4 +62,5 @@ class NoteActivity : AppCompatActivity() {
         }
 
     }
+
 }

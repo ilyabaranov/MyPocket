@@ -13,14 +13,9 @@ data class Note(
     val money:Float,
     @ColumnInfo(name="note_category")
     val category:String,
-    @ColumnInfo(name="note_category_color_red")
-    val colorRed:Int,
-    @ColumnInfo(name="note_category_color_green")
-    val colorGreen:Int,
-    @ColumnInfo(name="note_category_color_blue")
-    val colorBlue:Int,
     @ColumnInfo(name="note_timestamp")
-    val timestamp:Long
+    val timestamp:Long,
+
 ){
     @PrimaryKey(autoGenerate = true)
     var id:Int? = null

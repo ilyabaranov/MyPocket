@@ -33,4 +33,12 @@ class NoteRepository(private val dao :NoteDao) {
         dao.delete(id)
     }
 
+    fun deleteAll(){
+        dao.deleteAll()
+    }
+
+    suspend fun getList():List<Note>{
+        return dao.getList()
+    }
+
 }

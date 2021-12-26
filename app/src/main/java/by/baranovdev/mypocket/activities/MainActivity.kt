@@ -41,99 +41,53 @@ import android.os.Build
 import android.view.*
 
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import by.baranovdev.mypocket.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
-class MainActivity : AppCompatActivity(), OnChartValueSelectedListener,
-    NoteAdapter.OnNoteCLickListener {
+class MainActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityMainBinding
 
-
-    lateinit var mToolbar:Toolbar
-    lateinit var mSearchItem: MenuItem
-    lateinit var chart: PieChart
-
-    private val viewModel by lazy {
+    val viewModel by lazy {
         MainViewModelFactory((application as MyPocketApplication).noteRepository).create(
             MainViewModel::class.java
         )
     }
 
-    private val editMessageLauncher = registerForActivityResult(AddNoteActivity.Contract()) {
-        if (it != null) {
-            viewModel.insert(it)
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val sharedPref = getSharedPreferences("APP_PREFERENCES", Context.MODE_PRIVATE)
+
+
+
+        if(Firebase.auth.currentUser == null && intent.getStringExtra("UID_EXTRA").isNullOrEmpty()){
+            viewModel.deleteAll()
+            val intent = Intent(this, AuthActivity::class.java)
+            startActivity(intent)
+        }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.fab.setOnClickListener { editMessage() }
 
-        val chart = binding.pieChart
+        val navView: BottomNavigationView = binding.navView
 
-
-        binding.recycler.layoutManager = LinearLayoutManager(this)
-        binding.recycler.adapter = NoteAdapter(
-            viewModel.allNotes.value as ArrayList<Note>? ?: ArrayList(),
-            viewModel.categories,
-            this
-        )
-
-        chart.data = viewModel.updateChartData(viewModel.allNotes.value ?: emptyList())
-
-        viewModel.allNotes.observe(this) {
-            binding.recycler.adapter = NoteAdapter(
-                viewModel.allNotes.value as ArrayList<Note>? ?: ArrayList(),
-                viewModel.categories,
-                this
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_home, R.id.navigation_report, R.id.navigation_settings
             )
-            chart.data = viewModel.updateChartData(it)
-        }
-        binding.pieChart.setOnChartValueSelectedListener(this)
-
-        binding.recycler.adapter
-
-    }
-
-
-    private fun editMessage() {
-        editMessageLauncher.launch(viewModel.currentCategoryName)
-    }
-
-
-    override fun onValueSelected(e: Entry?, h: Highlight?) {
-        val sortedList = ArrayList<Note>()
-        val entry = e as PieEntry
-        val fullList = viewModel.allNotes.value
-        for (note in fullList as ArrayList<Note>) {
-            if (note.category.lowercase() == entry.label.toString().lowercase()) {
-                sortedList.add(note)
-            }
-        }
-        binding.recycler.adapter = NoteAdapter(sortedList, viewModel.categories, this)
-        viewModel.currentCategoryName = entry.label.toString()
-    }
-
-    override fun onNothingSelected() {
-        binding.recycler.adapter = NoteAdapter(
-            viewModel.allNotes.value as ArrayList<Note>? ?: ArrayList(),
-            viewModel.categories,
-            this
         )
-        viewModel.currentCategoryName = null
-    }
-
-    override fun onNoteCLick(note: Note?) {
-        val intent = Intent(this, NoteActivity::class.java)
-        intent.putExtra(EXTRA_SELECTED_NOTE_ID, note?.id)
-        startActivity(intent)
-    }
-
-
-
-    companion object {
-        val EXTRA_SELECTED_NOTE_ID = "selected_note_id"
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
     }
 }
