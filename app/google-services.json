@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1018922090412",
+    "project_id": "mypocket-14999",
+    "storage_bucket": "mypocket-14999.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018922090412:android:c2cd18e690b60a77324409",
+        "android_client_info": {
+          "package_name": "by.baranovdev.mypocket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1018922090412-vgsu6kqrvbjnsppukjq5gv8m7p13fi9i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnjeZr_t2_O6JLgcLnwiZlne7DDtbVR2g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1018922090412-vgsu6kqrvbjnsppukjq5gv8m7p13fi9i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
