@@ -20,7 +20,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Пароль"
+        android:hint="@string/password"
         android:layout_margin="16dp"
         app:layout_constraintBottom_toTopOf="@+id/auth_button_login"
         tools:layout_editor_absoluteX="16dp">
@@ -28,6 +28,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:inputType="textPassword"
             android:fontFamily="@font/futura_book_c"
             />
 
@@ -40,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="E-mail"
+        android:hint="@string/e_mail"
         app:layout_constraintBottom_toTopOf="@+id/auth_input_password"
         tools:layout_editor_absoluteX="16dp">
 
@@ -57,7 +58,7 @@
         android:fontFamily="@font/futura_medium_c"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Логин"
+        android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/auth_button_registration"/>
@@ -65,7 +66,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/auth_button_registration"
         android:layout_width="0dp"
-        android:text="Регистрация"
+        android:text="@string/registration"
         android:fontFamily="@font/futura_medium_c"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

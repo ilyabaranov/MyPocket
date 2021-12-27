@@ -65,8 +65,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val sharedPref = getSharedPreferences("APP_PREFERENCES", Context.MODE_PRIVATE)
-
-
+        val email:String? = intent.getStringExtra("EMAIL_EXTRA")
+        if(!email.isNullOrEmpty()){viewModel.email = email}
 
         if(Firebase.auth.currentUser == null && intent.getStringExtra("UID_EXTRA").isNullOrEmpty()){
             viewModel.deleteAll()
@@ -79,9 +79,14 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
+        val currentFragment = intent.getStringExtra("FRAGMENT_EXTRA")
+
+
+
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
+
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home, R.id.navigation_report, R.id.navigation_settings
@@ -89,5 +94,12 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        if(!currentFragment.isNullOrEmpty()){
+            when(currentFragment){
+                "settings" -> navController.navigate(R.id.navigation_settings)
+                else -> {}
+            }
+        }
     }
 }

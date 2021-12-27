@@ -23,6 +23,8 @@ class MainViewModel(private val repository: NoteRepository) : ViewModel() {
     val allNotes: LiveData<List<Note>> = repository.getALl()
     val categories = ArrayList<Category>()
 
+    var email:String = ""
+
     var startDate: Long = 0L
     var endDate: Long = 1L
 

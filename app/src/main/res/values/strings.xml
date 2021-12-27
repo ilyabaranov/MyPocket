@@ -11,4 +11,22 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="login">Логин</string>
+    <string name="registration">Регистрация</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Пароль</string>
+    <string name="add_note">Добавить запись</string>
+    <string name="title">Название</string>
+    <string name="money_spent">Денег потрачено</string>
+    <string name="category">Категория</string>
+    <string name="add">Добавить</string>
+    <string name="delete">Удалить</string>
+    <string name="choose_dates">Выбрать даты</string>
+    <string name="change_password">Сменить пароль</string>
+    <string name="logout">Выйти из аккаунта</string>
+    <string name="delete_account">Удалить аккаунт</string>
+    <string name="old_password">Старый пароль</string>
+    <string name="new_password">Новый пароль</string>
+    <string name="repeat_new_password">Повторите новый пароль</string>
+    <string name="my_pocket">MY POCKET</string>
 </resources>

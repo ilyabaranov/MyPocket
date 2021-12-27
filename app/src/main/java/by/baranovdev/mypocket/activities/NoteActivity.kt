@@ -47,7 +47,7 @@ class NoteActivity : AppCompatActivity() {
         noteViewModel.currentNoteLiveData.observe(this) {
             if (it != null) {
                 binding.noteTitle.text = it.description
-                binding.noteDate.text = Date(it.timestamp).toInstant().toString()
+                binding.noteDate.text = noteViewModel.parseDate(it.timestamp)
                 binding.noteMoney.text = it.money.toString()
                 binding.noteCategoryIcon.setImageResource(noteViewModel.findIconResource(it.category))
             }

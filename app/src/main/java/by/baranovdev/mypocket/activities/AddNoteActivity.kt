@@ -14,6 +14,10 @@ import androidx.core.widget.doOnTextChanged
 import by.baranovdev.mypocket.R
 import by.baranovdev.mypocket.activities.adapters.NoteAdapter
 import by.baranovdev.mypocket.activities.adapters.findIconResource
+import by.baranovdev.mypocket.activities.viewmodels.AddNoteViewModel
+import by.baranovdev.mypocket.activities.viewmodels.AddNoteViewModelFactory
+import by.baranovdev.mypocket.activities.viewmodels.AuthViewModel
+import by.baranovdev.mypocket.activities.viewmodels.AuthViewModelFactory
 import by.baranovdev.mypocket.database.entity.Note
 import by.baranovdev.mypocket.databinding.ActivityAddNoteBinding
 import com.google.firebase.auth.ktx.auth
@@ -27,6 +31,8 @@ import java.util.*
 
 class AddNoteActivity : AppCompatActivity(), ColorPickerDialogListener {
     private lateinit var binding: ActivityAddNoteBinding
+
+    val viewModel by lazy { AddNoteViewModelFactory().create(AddNoteViewModel::class.java) }
 
     private val resultIntent: Intent
         get() = Intent().apply {
@@ -42,7 +48,7 @@ class AddNoteActivity : AppCompatActivity(), ColorPickerDialogListener {
 
         val uid = Firebase.auth.uid
 
-        val selectedCategory = intent.getStringExtra(EXTRA_INPUT_SELECTED_CATEGORY) ?: ""
+        val selectedCategory = viewModel.parseCategory(intent.getStringExtra(EXTRA_INPUT_SELECTED_CATEGORY) ?: "")
 
         binding.exampleCardCategoryIcon.visibility = View.INVISIBLE
 
@@ -78,6 +84,7 @@ class AddNoteActivity : AppCompatActivity(), ColorPickerDialogListener {
         }
 
     }
+
 
     private fun createColorPickerDialog() {
         ColorPickerDialog.newBuilder()

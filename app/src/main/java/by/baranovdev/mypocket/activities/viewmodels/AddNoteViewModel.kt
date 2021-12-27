@@ -8,24 +8,39 @@ import by.baranovdev.mypocket.repository.NoteRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AddNoteViewModel(
-    private val categoryRepository: CategoryRepository,
-    private val noteRepository: NoteRepository
-) : ViewModel() {
-
-    val allCategories: LiveData<List<Category>> = categoryRepository.getAll()
+class AddNoteViewModel() : ViewModel() {
 
 
+    fun parseCategory(str: String): String {
+        return when (str) {
+            "P" -> "Транспорт"
+            "G" -> "Продукты"
+            "K" -> "Развлечения"
+            "M" -> "Жильё"
+            "L" -> "Спорт"
+            "I" -> "Хобби"
+            "E" -> "Гигиена"
+            "F" -> "Питомцы"
+            "C" -> "Подарки"
+            "J" -> "Кафе"
+            "N" -> "Такси"
+            "H" -> "Счета"
+            "O" -> "Связь"
+            "B" -> "Одежда"
+            "D" -> "Здоровье"
+            "A" -> "Авто"
+            "" -> ""
+            else -> "?"
+        }
+    }
 
 }
-class AddNoteViewModelFactory(
-    private val categoryRepository: CategoryRepository,
-    private val noteRepository: NoteRepository
-) : ViewModelProvider.Factory {
+
+class AddNoteViewModelFactory() : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(AddNoteViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return AddNoteViewModel(categoryRepository,noteRepository) as T
+            return AddNoteViewModel() as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

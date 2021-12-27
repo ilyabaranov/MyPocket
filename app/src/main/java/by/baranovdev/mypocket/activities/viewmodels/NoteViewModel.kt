@@ -12,6 +12,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.time.Instant
+import java.time.ZoneId
 
 class NoteViewModel(
     private val categoryRepository: CategoryRepository,
@@ -66,6 +68,36 @@ class NoteViewModel(
             "Здоровье" -> R.drawable.ic_health_24
             "Авто" -> R.drawable.ic_auto_24
             else -> 0
+        }
+    }
+
+    fun parseDate(millis :Long):String{
+        val date = Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDateTime()
+
+        return "${addZero(date.hour)}:${addZero(date.minute)}:${addZero(date.second)}    ${addZero(date.dayOfMonth)} ${findMonthByNumber(date.monthValue)} ${date.year}"
+    }
+
+    private fun addZero(num :Int):String{
+        return if(num<10){
+            "0$num"
+        } else "$num"
+    }
+
+    private fun findMonthByNumber(num :Int):String{
+        return when(num){
+            1 -> "янв"
+            2 -> "фев"
+            3 -> "мар"
+            4 -> "апр"
+            5 -> "май"
+            6 -> "июн"
+            7 -> "июл"
+            8 -> "авг"
+            9 -> "сен"
+            10 -> "окт"
+            11 -> "ноя"
+            12 -> "дек"
+            else -> ""
         }
     }
 }

@@ -37,7 +37,7 @@
         android:fontFamily="@font/futura_medium_c"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:text="TITLE"
+        android:text="@string/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/note_category_icon"/>
@@ -58,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Delete"
+        android:text="@string/delete"
         android:backgroundTint="#DF3636"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

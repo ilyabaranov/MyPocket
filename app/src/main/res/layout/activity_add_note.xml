@@ -91,7 +91,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/futura_medium_c"
                 android:gravity="center"
-                android:text="Добавить запись"
+                android:text="@string/add_note"
                 android:textColor="#80000000"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -109,7 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="64dp"
-        android:hint="Title"
+        android:hint="@string/title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -124,12 +124,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="Money"
+        android:hint="@string/money_spent"
         app:layout_constraintTop_toBottomOf="@+id/input_title">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -148,7 +149,7 @@
             android:layout_weight="1"
             android:visibility="visible"
             android:layout_height="wrap_content"
-            android:hint="Category"
+            android:hint="@string/category"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input_money">
 
@@ -176,7 +177,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Save"
+        android:text="@string/add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
